@@ -24,7 +24,7 @@ class SalaryMetricsApiTest < ActionDispatch::IntegrationTest
   end
 
   test "returns min max and average salary by country" do
-    get "/salary_metrics/countries/India"
+    get "/api/v1/salary_metrics/countries/India"
 
     assert_response :success
     assert_equal "India", json_response.dig("country_metrics", "country")
@@ -34,7 +34,7 @@ class SalaryMetricsApiTest < ActionDispatch::IntegrationTest
   end
 
   test "returns average salary by job title" do
-    get "/salary_metrics/job_titles/Backend%20Engineer"
+    get "/api/v1/salary_metrics/job_titles/Backend%20Engineer"
 
     assert_response :success
     assert_equal "Backend Engineer", json_response.dig("job_title_metrics", "job_title")
@@ -42,7 +42,7 @@ class SalaryMetricsApiTest < ActionDispatch::IntegrationTest
   end
 
   test "returns not found when no employees match a metric query" do
-    get "/salary_metrics/countries/Brazil"
+    get "/api/v1/salary_metrics/countries/Brazil"
 
     assert_response :not_found
     assert_equal "No employees found for country Brazil", json_response.fetch("error")

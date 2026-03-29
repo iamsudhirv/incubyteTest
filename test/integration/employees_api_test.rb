@@ -12,7 +12,7 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
   end
 
   test "lists employees" do
-    get "/employees"
+    get "/api/v1/employees"
 
     assert_response :success
     assert_equal 1, json_response.fetch("employees").length
@@ -20,7 +20,7 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
   end
 
   test "shows an employee" do
-    get "/employees/#{@employee.id}"
+    get "/api/v1/employees/#{@employee.id}"
 
     assert_response :success
     assert_equal @employee.full_name, json_response.fetch("employee").fetch("full_name")
@@ -28,7 +28,7 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
 
   test "creates an employee" do
     assert_difference("Employee.count", 1) do
-      post "/employees", params: {
+      post "/api/v1/employees", params: {
         employee: {
           full_name: "Grace Hopper",
           job_title: "Engineering Manager",
@@ -43,7 +43,7 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
   end
 
   test "returns validation errors when creating an invalid employee" do
-    post "/employees", params: {
+    post "/api/v1/employees", params: {
       employee: {
         full_name: "",
         job_title: "",
@@ -58,7 +58,7 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
   end
 
   test "updates an employee" do
-    patch "/employees/#{@employee.id}", params: {
+    patch "/api/v1/employees/#{@employee.id}", params: {
       employee: {
         job_title: "Staff Engineer",
         salary: 140_000
@@ -72,14 +72,14 @@ class EmployeesApiTest < ActionDispatch::IntegrationTest
 
   test "deletes an employee" do
     assert_difference("Employee.count", -1) do
-      delete "/employees/#{@employee.id}"
+      delete "/api/v1/employees/#{@employee.id}"
     end
 
     assert_response :no_content
   end
 
   test "returns not found for a missing employee" do
-    get "/employees/0"
+    get "/api/v1/employees/0"
 
     assert_response :not_found
     assert_equal "Employee not found", json_response.fetch("error")

@@ -71,11 +71,11 @@ bin/rails test
 
 ### Employees
 
-- `GET /employees`
-- `GET /employees/:id`
-- `POST /employees`
-- `PATCH /employees/:id`
-- `DELETE /employees/:id`
+- `GET /api/v1/employees`
+- `GET /api/v1/employees/:id`
+- `POST /api/v1/employees`
+- `PATCH /api/v1/employees/:id`
+- `DELETE /api/v1/employees/:id`
 
 Create request body:
 
@@ -117,7 +117,7 @@ Validation failures return:
 
 ### Salary Calculation
 
-- `GET /employees/:id/salary`
+- `GET /api/v1/employees/:id/salary`
 
 Example response:
 
@@ -136,7 +136,7 @@ Example response:
 
 By country:
 
-- `GET /salary_metrics/countries/:country`
+- `GET /api/v1/salary_metrics/countries/:country`
 
 Example response:
 
@@ -153,7 +153,7 @@ Example response:
 
 By job title:
 
-- `GET /salary_metrics/job_titles/:job_title`
+- `GET /api/v1/salary_metrics/job_titles/:job_title`
 
 Example response:
 

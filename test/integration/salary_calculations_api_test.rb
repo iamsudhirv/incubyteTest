@@ -9,7 +9,7 @@ class SalaryCalculationsApiTest < ActionDispatch::IntegrationTest
       salary: 100_000
     )
 
-    get "/employees/#{employee.id}/salary"
+    get "/api/v1/employees/#{employee.id}/salary"
 
     assert_response :success
     assert_equal "100000.0", json_response.dig("salary", "gross_salary")
@@ -26,7 +26,7 @@ class SalaryCalculationsApiTest < ActionDispatch::IntegrationTest
       salary: 100_000
     )
 
-    get "/employees/#{employee.id}/salary"
+    get "/api/v1/employees/#{employee.id}/salary"
 
     assert_response :success
     assert_equal "12000.0", json_response.dig("salary", "deductions")
@@ -42,7 +42,7 @@ class SalaryCalculationsApiTest < ActionDispatch::IntegrationTest
       salary: 100_000
     )
 
-    get "/employees/#{employee.id}/salary"
+    get "/api/v1/employees/#{employee.id}/salary"
 
     assert_response :success
     assert_equal "0.0", json_response.dig("salary", "deductions")
